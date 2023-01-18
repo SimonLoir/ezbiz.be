@@ -1,0 +1,12 @@
+version: '3'
+name: "ezbiz-prod"
+services:
+  db:
+    build: ./database
+    ports:
+      - 8090:8090
+    volumes:
+      - database:/pb/pb_data
+
+volumes:
+  database:
