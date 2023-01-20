@@ -1,32 +1,29 @@
-import PocketBase, { ClientResponseError } from 'pocketbase';
-import CredentialsError from './exceptions/CredentialsError';
+import Database from './Database';
+import UserRecord from './records/UserRecord';
 export default class Auth {
-    constructor(private pb: PocketBase) {}
-
-    async login(username: string, password: string) {
-        try {
-            const auth = await this.pb
-                .collection('users')
-                .authWithPassword(username, password);
-            return auth.record;
-        } catch (error) {
-            if (error instanceof ClientResponseError) {
-                if (error.status === 401 || error.status === 400) {
-                    throw new CredentialsError('Invalid credentials');
-                }
-            }
-        }
+    private currentUser: UserRecord | null = null;
+    constructor(private db: Database) {
+        this.currentUser = db.currentUser;
+        console.log(this.currentUser);
     }
 
-    logout() {
-        this.pb.authStore.clear();
+    public async login(username: string, password: string) {
+        this.currentUser = await this.db.loginWithPassword(
+            UserRecord,
+            'users',
+            username,
+            password
+        );
+        console.log(this.currentUser);
+        return this.currentUser;
     }
 
-    get isValid() {
-        return this.pb.authStore.isValid;
+    public logout() {
+        this.db.logout();
+        this.currentUser = null;
     }
 
-    get token() {
-        return this.pb.authStore.token;
+    public get isValid() {
+        return this.db.isValidUser;
     }
 }

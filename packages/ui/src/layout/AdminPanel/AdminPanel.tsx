@@ -1,6 +1,5 @@
-import EZBiz from 'ezbiz-sdk';
 import Link from 'next/link';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import LoginProvider from '../../auth/LoginProvider';
 
 const menuItems = [
@@ -36,7 +35,13 @@ export default function AdminPanel({
                     <header className='leading-[65px] text-xl font-semibold px-5 shadow-lg z-90 tracking-wide'>
                         Test page
                     </header>
-                    <main className='p-5 bg-gray-100 z-85'>{children}</main>
+                    <main className='p-5 bg-gray-100 z-85'>
+                        {children}
+
+                        <button onClick={() => ref.current?.logout()}>
+                            logout
+                        </button>
+                    </main>
                 </div>
             </div>
         </LoginProvider>
