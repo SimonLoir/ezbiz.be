@@ -1,14 +1,12 @@
 import EZBiz from 'ezbiz-sdk';
-const { auth, customers } = EZBiz;
+const { auth, customers, info } = EZBiz;
 export default function Web() {
     return (
         <div>
-            <h1>test</h1>
-            <button
-                onClick={async () =>
-                    console.log(await customers.getCustomers())
-                }
-            >
+            <h1 className='text-3xl font-bold text-slate-200 underline'>
+                test
+            </h1>
+            <button onClick={async () => console.log(await info())}>
                 test
             </button>
         </div>

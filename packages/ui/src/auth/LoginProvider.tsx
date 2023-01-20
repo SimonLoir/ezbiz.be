@@ -9,14 +9,13 @@ import {
 } from 'react';
 import Modal from '../layout/Modal';
 
+type LoginProviderProps = {
+    children: React.ReactNode;
+    logoutProvider?: (cb: () => void) => void;
+};
+
 export default forwardRef(function LoginProvider(
-    {
-        children,
-        logoutProvider,
-    }: {
-        children: React.ReactNode;
-        logoutProvider?: (cb: () => void) => void;
-    },
+    { children, logoutProvider }: LoginProviderProps,
     ref
 ) {
     const { auth } = EZBiz;
