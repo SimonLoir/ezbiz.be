@@ -25,8 +25,8 @@ export default forwardRef(function LoginProvider(
     const [error, setError] = useState('');
 
     useEffect(() => {
-        setValid(auth.isValid);
-    }, [auth, logoutProvider]);
+        auth.updateUser(() => setValid(auth.isValid));
+    }, []);
 
     useImperativeHandle(ref, () => ({
         logout: () => {

@@ -1,4 +1,5 @@
 import Database from './Database';
+import Customers from './Customers';
 import Auth from './Auth';
 export default class EZBiz {
     private static database = new Database({
@@ -6,4 +7,5 @@ export default class EZBiz {
         port: process.env.DB_PORT ?? '8090',
     });
     public static auth = new Auth(EZBiz.database);
+    public static customers = new Customers(EZBiz.database);
 }

@@ -1,0 +1,364 @@
+[
+    {
+        "id": "_pb_users_auth_",
+        "name": "users",
+        "type": "auth",
+        "system": false,
+        "schema": [
+            {
+                "id": "users_name",
+                "name": "name",
+                "type": "text",
+                "system": false,
+                "required": false,
+                "unique": false,
+                "options": {
+                    "min": null,
+                    "max": null,
+                    "pattern": ""
+                }
+            },
+            {
+                "id": "fnz60nmn",
+                "name": "enterprise",
+                "type": "relation",
+                "system": false,
+                "required": false,
+                "unique": false,
+                "options": {
+                    "maxSelect": 1,
+                    "collectionId": "iogogirboenk1ud",
+                    "cascadeDelete": false
+                }
+            },
+            {
+                "id": "6ded2gnw",
+                "name": "phone_number",
+                "type": "text",
+                "system": false,
+                "required": false,
+                "unique": true,
+                "options": {
+                    "min": null,
+                    "max": null,
+                    "pattern": ""
+                }
+            }
+        ],
+        "listRule": "id = @request.auth.id",
+        "viewRule": "id = @request.auth.id",
+        "createRule": "",
+        "updateRule": "id = @request.auth.id",
+        "deleteRule": "id = @request.auth.id",
+        "options": {
+            "allowEmailAuth": true,
+            "allowOAuth2Auth": true,
+            "allowUsernameAuth": true,
+            "exceptEmailDomains": null,
+            "manageRule": null,
+            "minPasswordLength": 8,
+            "onlyEmailDomains": null,
+            "requireEmail": false
+        }
+    },
+    {
+        "id": "iogogirboenk1ud",
+        "name": "enterprises",
+        "type": "base",
+        "system": false,
+        "schema": [
+            {
+                "id": "vtffeshw",
+                "name": "name",
+                "type": "text",
+                "system": false,
+                "required": true,
+                "unique": false,
+                "options": {
+                    "min": null,
+                    "max": null,
+                    "pattern": ""
+                }
+            },
+            {
+                "id": "wpcosps4",
+                "name": "vat_number",
+                "type": "text",
+                "system": false,
+                "required": false,
+                "unique": false,
+                "options": {
+                    "min": null,
+                    "max": null,
+                    "pattern": ""
+                }
+            },
+            {
+                "id": "nexldr1z",
+                "name": "rpm",
+                "type": "text",
+                "system": false,
+                "required": false,
+                "unique": false,
+                "options": {
+                    "min": null,
+                    "max": null,
+                    "pattern": ""
+                }
+            }
+        ],
+        "listRule": null,
+        "viewRule": null,
+        "createRule": null,
+        "updateRule": null,
+        "deleteRule": null,
+        "options": {}
+    },
+    {
+        "id": "et50f35qd4l3ldw",
+        "name": "ecom_login",
+        "type": "auth",
+        "system": false,
+        "schema": [],
+        "listRule": null,
+        "viewRule": null,
+        "createRule": null,
+        "updateRule": null,
+        "deleteRule": null,
+        "options": {
+            "allowEmailAuth": true,
+            "allowOAuth2Auth": true,
+            "allowUsernameAuth": true,
+            "exceptEmailDomains": null,
+            "manageRule": null,
+            "minPasswordLength": 8,
+            "onlyEmailDomains": null,
+            "requireEmail": false
+        }
+    },
+    {
+        "id": "bd2n2b6fwefu2nb",
+        "name": "info",
+        "type": "base",
+        "system": false,
+        "schema": [
+            {
+                "id": "m63ar4m0",
+                "name": "name",
+                "type": "text",
+                "system": false,
+                "required": true,
+                "unique": true,
+                "options": {
+                    "min": null,
+                    "max": null,
+                    "pattern": ""
+                }
+            },
+            {
+                "id": "pjfl6val",
+                "name": "value",
+                "type": "json",
+                "system": false,
+                "required": true,
+                "unique": false,
+                "options": {}
+            }
+        ],
+        "listRule": "",
+        "viewRule": "",
+        "createRule": null,
+        "updateRule": null,
+        "deleteRule": null,
+        "options": {}
+    },
+    {
+        "id": "bmdee0x3try9nil",
+        "name": "products",
+        "type": "base",
+        "system": false,
+        "schema": [
+            {
+                "id": "tsr7yl1y",
+                "name": "enterprise",
+                "type": "relation",
+                "system": false,
+                "required": true,
+                "unique": false,
+                "options": {
+                    "maxSelect": 1,
+                    "collectionId": "iogogirboenk1ud",
+                    "cascadeDelete": true
+                }
+            },
+            {
+                "id": "ryqzi6wy",
+                "name": "name",
+                "type": "text",
+                "system": false,
+                "required": true,
+                "unique": false,
+                "options": {
+                    "min": null,
+                    "max": null,
+                    "pattern": ""
+                }
+            },
+            {
+                "id": "2y9ty8e6",
+                "name": "slug",
+                "type": "text",
+                "system": false,
+                "required": true,
+                "unique": false,
+                "options": {
+                    "min": null,
+                    "max": null,
+                    "pattern": ""
+                }
+            },
+            {
+                "id": "y4vxpw3c",
+                "name": "available",
+                "type": "bool",
+                "system": false,
+                "required": false,
+                "unique": false,
+                "options": {}
+            }
+        ],
+        "listRule": null,
+        "viewRule": null,
+        "createRule": null,
+        "updateRule": null,
+        "deleteRule": null,
+        "options": {}
+    },
+    {
+        "id": "4j30o1aa0n7s7de",
+        "name": "variants",
+        "type": "base",
+        "system": false,
+        "schema": [
+            {
+                "id": "dau80hdt",
+                "name": "product",
+                "type": "relation",
+                "system": false,
+                "required": true,
+                "unique": false,
+                "options": {
+                    "maxSelect": 1,
+                    "collectionId": "bmdee0x3try9nil",
+                    "cascadeDelete": true
+                }
+            },
+            {
+                "id": "2ce4jibi",
+                "name": "name",
+                "type": "text",
+                "system": false,
+                "required": true,
+                "unique": false,
+                "options": {
+                    "min": null,
+                    "max": null,
+                    "pattern": ""
+                }
+            },
+            {
+                "id": "f0xa014m",
+                "name": "available",
+                "type": "bool",
+                "system": false,
+                "required": false,
+                "unique": false,
+                "options": {}
+            }
+        ],
+        "listRule": null,
+        "viewRule": null,
+        "createRule": null,
+        "updateRule": null,
+        "deleteRule": null,
+        "options": {}
+    },
+    {
+        "id": "6a27hpglycvfx9h",
+        "name": "customers",
+        "type": "base",
+        "system": false,
+        "schema": [
+            {
+                "id": "rne4zgm1",
+                "name": "enterprise",
+                "type": "relation",
+                "system": false,
+                "required": true,
+                "unique": false,
+                "options": {
+                    "maxSelect": 1,
+                    "collectionId": "iogogirboenk1ud",
+                    "cascadeDelete": true
+                }
+            },
+            {
+                "id": "nbipfog4",
+                "name": "email",
+                "type": "email",
+                "system": false,
+                "required": false,
+                "unique": false,
+                "options": {
+                    "exceptDomains": null,
+                    "onlyDomains": null
+                }
+            },
+            {
+                "id": "jqu7sq9w",
+                "name": "name",
+                "type": "text",
+                "system": false,
+                "required": true,
+                "unique": false,
+                "options": {
+                    "min": null,
+                    "max": null,
+                    "pattern": ""
+                }
+            },
+            {
+                "id": "nmv0ywh4",
+                "name": "address",
+                "type": "text",
+                "system": false,
+                "required": true,
+                "unique": false,
+                "options": {
+                    "min": null,
+                    "max": null,
+                    "pattern": ""
+                }
+            },
+            {
+                "id": "c7xlrg13",
+                "name": "vat_number",
+                "type": "text",
+                "system": false,
+                "required": true,
+                "unique": false,
+                "options": {
+                    "min": null,
+                    "max": null,
+                    "pattern": ""
+                }
+            }
+        ],
+        "listRule": "@request.auth.enterprise = enterprise",
+        "viewRule": "@request.auth.enterprise = enterprise",
+        "createRule": null,
+        "updateRule": null,
+        "deleteRule": null,
+        "options": {}
+    }
+]

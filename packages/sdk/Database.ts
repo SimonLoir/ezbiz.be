@@ -6,7 +6,7 @@ type DatabaseOptions = {
     host: string;
     port: string;
 };
-type Type<RecordType> = {
+export type Type<RecordType> = {
     new (record: Record, database: Database): RecordType;
 };
 
@@ -25,15 +25,25 @@ export default class Database {
         return result.map((record) => new RType(record, this));
     }
 
+    public async get<RecordType extends DatabaseRecord = any>(
+        RType: Type<RecordType>,
+        collection: string,
+        filter: string
+    ): Promise<RecordType | null> {
+        if (!filter) return null;
+        const record = await this.pb
+            .collection(collection)
+            .getFirstListItem(filter);
+        return new RType(record, this);
+    }
+
     public async getOne<RecordType extends DatabaseRecord = any>(
         RType: Type<RecordType>,
         collection: string,
         id: string
     ): Promise<RecordType | null> {
         if (!id) return null;
-        const record = await this.pb
-            .collection(collection)
-            .getFirstListItem(`id=${id}`);
+        const record = await this.pb.collection(collection).getOne(id);
         return new RType(record, this);
     }
 

@@ -4,7 +4,6 @@ export default class Auth {
     private currentUser: UserRecord | null = null;
     constructor(private db: Database) {
         this.currentUser = db.currentUser;
-        console.log(this.currentUser);
     }
 
     public async login(username: string, password: string) {
@@ -14,7 +13,6 @@ export default class Auth {
             username,
             password
         );
-        console.log(this.currentUser);
         return this.currentUser;
     }
 
@@ -25,5 +23,14 @@ export default class Auth {
 
     public get isValid() {
         return this.db.isValidUser;
+    }
+
+    public async updateUser(cb: () => void) {
+        if (this.currentUser) {
+            try {
+                await this.currentUser.updateRecord(UserRecord);
+                cb();
+            } catch (error) {}
+        }
     }
 }
