@@ -49,7 +49,10 @@ export default function RegisterScreen() {
                     value={password2}
                     onChange={(e) => setPassword2(e.target.value)}
                 />
-                <div className='flex justify-end'>
+                <div className='flex justify-between'>
+                    <button className='text-primary font-semibold'>
+                        Précédent
+                    </button>
                     <button className='text-primary font-semibold'>
                         Suivant
                     </button>

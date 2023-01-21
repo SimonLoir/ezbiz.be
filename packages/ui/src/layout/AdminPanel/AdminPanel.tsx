@@ -10,6 +10,7 @@ import { IoMdSettings } from 'react-icons/io';
 import { BsFileSpreadsheet } from 'react-icons/bs';
 import { RiFileUserLine } from 'react-icons/ri';
 import UserRecord from 'ezbiz-sdk/records/UserRecord';
+import UserMenu from './UserMenu';
 
 const menuItems = [
     { name: 'Accueil', url: '/', icon: <FaHome /> },
@@ -64,25 +65,10 @@ export default function AdminPanel({
                     <h1 className='inline text-xl font-semibold tracking-wide'>
                         Factures
                     </h1>
-                    <span
-                        className='float-right text-dark-gray cursor-pointer'
-                        onClick={logout}
-                    >
-                        {user.name}
-                        <div className='h-10 w-10 inline-grid ml-4 bg-near-white align-middle justify-center items-center leading-none rounded-full font-bold'>
-                            {getInitials(user.name)}
-                        </div>
-                    </span>
+                    <UserMenu user={user} logout={logout} />
                 </header>
                 <main className='p-8 z-85'>{children}</main>
             </div>
         </div>
     );
-}
-
-function getInitials(name: string) {
-    return name
-        .split(' ')
-        .map((word) => word[0])
-        .join('');
 }
