@@ -59,6 +59,7 @@ export default function NewLine({ onHide, data }: NewLineProps) {
                                 <span
                                     className={classes.join(' ')}
                                     onClick={() => setRate(value)}
+                                    key={value}
                                 >
                                     {value}%
                                 </span>
