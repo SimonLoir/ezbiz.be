@@ -1,17 +1,25 @@
 import { useRef } from 'react';
 import LoginProvider from '../../auth/LoginProvider';
-import { FaFileInvoice, FaHome, FaUserCircle } from 'react-icons/fa';
+import {
+    FaFileInvoice,
+    FaHome,
+    FaUserCircle,
+    FaShoppingBasket,
+    FaUserFriends,
+} from 'react-icons/fa';
 import EZBiz from 'ezbiz-sdk';
 import MenuItem from './MenuItem';
 import { IoMdSettings } from 'react-icons/io';
+import { BsFileSpreadsheet } from 'react-icons/bs';
+import { RiFileUserLine } from 'react-icons/ri';
 
 const menuItems = [
     { name: 'Accueil', url: '/', icon: <FaHome /> },
     { name: 'Factures', url: '/invoices', icon: <FaFileInvoice /> },
-    { name: 'Clients', url: '/invoices', icon: <FaFileInvoice /> },
-    { name: 'Produits', url: '/invoices', icon: <FaFileInvoice /> },
-    { name: 'Déclarations TVA', url: '/invoices', icon: <FaFileInvoice /> },
-    { name: 'Listing clients', url: '/invoices', icon: <FaFileInvoice /> },
+    { name: 'Clients', url: '/invoices', icon: <FaUserFriends /> },
+    { name: 'Produits', url: '/invoices', icon: <FaShoppingBasket /> },
+    { name: 'Déclarations TVA', url: '/invoices', icon: <BsFileSpreadsheet /> },
+    { name: 'Listing clients', url: '/invoices', icon: <RiFileUserLine /> },
 ];
 const { auth } = EZBiz;
 export default function AdminPanel({
