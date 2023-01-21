@@ -15,7 +15,7 @@ import UserMenu from './UserMenu';
 const menuItems = [
     { name: 'Accueil', url: '/', icon: <FaHome /> },
     { name: 'Factures', url: '/invoices', icon: <FaFileInvoice /> },
-    { name: 'Clients', url: '/invoices', icon: <FaUserFriends /> },
+    { name: 'Clients', url: '/customers', icon: <FaUserFriends /> },
     { name: 'Produits', url: '/invoices', icon: <FaShoppingBasket /> },
     { name: 'Déclarations TVA', url: '/invoices', icon: <BsFileSpreadsheet /> },
     { name: 'Listing clients', url: '/invoices', icon: <RiFileUserLine /> },

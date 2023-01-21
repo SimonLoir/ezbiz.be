@@ -1,10 +1,16 @@
+import { useState } from 'react';
 import Dialog from '../Dialog';
 import Title, { SubTitle } from '../Title';
 
 type NewLineProps = {
     onHide: () => void;
+    data?: {
+        description: string;
+    };
 };
-export default function NewLine({ onHide }: NewLineProps) {
+export default function NewLine({ onHide, data }: NewLineProps) {
+    const [description, setDescription] = useState('');
+    const [rate, setRate] = useState(21);
     return (
         <Dialog>
             <Title text='Ajouter une ligne' />
@@ -13,7 +19,8 @@ export default function NewLine({ onHide }: NewLineProps) {
                     <SubTitle text='Description' />
                     <textarea
                         className='w-full rounded-lg border border-subtle-gray p-2'
-                        rows={5}
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
                     ></textarea>
                 </div>
                 <div>
@@ -38,14 +45,33 @@ export default function NewLine({ onHide }: NewLineProps) {
                     </div>
                     <div className='space-x-4'>
                         <span>Au taux de </span>
-                        <button>21%</button>
-                        <button>12%</button>
-                        <button>6%</button>
+                        {[21, 12, 6, 0].map((value) => {
+                            const classes: string[] = [
+                                'cursor-pointer',
+                                'transition-all',
+                            ];
+                            if (value === rate) {
+                                classes.push('text-primary');
+                                classes.push('font-semibold');
+                                classes.push('border-b-2');
+                            }
+                            return (
+                                <span
+                                    className={classes.join(' ')}
+                                    onClick={() => setRate(value)}
+                                >
+                                    {value}%
+                                </span>
+                            );
+                        })}
                     </div>
                 </div>
                 <div className='flex justify-end space-x-4'>
                     <button onClick={() => onHide()}>Annuler</button>
-                    <button className='bg-primary text-white p-4 py-2 rounded-lg'>
+                    <button
+                        className='bg-primary text-white p-4 py-2 rounded-lg disabled:bg-near-white disabled:text-near-black'
+                        disabled={description.trim() == ''}
+                    >
                         Confirmer
                     </button>
                 </div>

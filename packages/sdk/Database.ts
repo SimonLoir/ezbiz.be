@@ -22,6 +22,7 @@ export default class Database {
         collection: string
     ): Promise<RecordType[]> {
         const result = await this.pb.collection(collection).getFullList();
+        console.log(result);
         return result.map((record) => new RType(record, this));
     }
 

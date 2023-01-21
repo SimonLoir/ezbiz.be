@@ -13,7 +13,6 @@ export default function MyApp({ Component, pageProps }: any) {
     useEffect(() => {
         if (!auth.isValid) return;
         auth.updateUser(() => {
-            console.log('User updated');
             setCurrentUser(auth.user);
         });
     }, []);
