@@ -1,8 +1,12 @@
 import EZBiz from 'ezbiz-sdk';
 import CustomerRecord from 'ezbiz-sdk/records/CustomerRecord';
 import React, { useEffect, useState } from 'react';
+import { BsPlus } from 'react-icons/bs';
+
 const { customers: customers_service } = EZBiz;
-export default React.memo(function CustomersPageComponent() {
+const headers = ['Nom', 'Email', 'Téléphone', 'Adresse', 'N° TVA'];
+
+export default function CustomersPageComponent() {
     const [customers, setCustomers] = useState<CustomerRecord[]>([]);
     useEffect(() => {
         console.log('CustomersPageComponent');
@@ -19,11 +23,11 @@ export default React.memo(function CustomersPageComponent() {
             <table className='table-auto w-full text-left whitespace-nowrap border-spacing-y-2 border-separate'>
                 <thead>
                     <tr className='text-dark-gray'>
-                        {['Nom', 'Email', 'Téléphone', 'Adresse', 'N° TVA'].map(
-                            (t) => (
-                                <th key={t}>{t}</th>
-                            )
-                        )}
+                        {headers.map((t) => (
+                            <th key={t} className='p-4'>
+                                {t}
+                            </th>
+                        ))}
                     </tr>
                 </thead>
                 <tbody>
@@ -40,8 +44,20 @@ export default React.memo(function CustomersPageComponent() {
                             </td>
                         </tr>
                     ))}
+                    <tr>
+                        <td
+                            colSpan={headers.length}
+                            className='text-center text-accent p-4 font-medium'
+                        >
+                            <button>Ajouter un client</button>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
+
+            <button className='fixed bottom-2 right-2 h-[50px] w-[50px] bg-primary text-white rounded-full text-3xl grid items-center justify-center shadow-xl z-90'>
+                <BsPlus />
+            </button>
         </>
     );
-});
+}
