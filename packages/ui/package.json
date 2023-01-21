@@ -13,12 +13,13 @@
         "eslint": "^7.32.0",
         "eslint-config-custom": "*",
         "react": "^18.2.0",
+        "tailwind-config": "*",
         "tsconfig": "*",
-        "typescript": "^4.5.2",
-        "tailwind-config": "*"
+        "typescript": "^4.5.2"
     },
     "dependencies": {
         "ezbiz-sdk": "*",
-        "next": "^13.1.2"
+        "next": "^13.1.2",
+        "react-icons": "^4.7.1"
     }
 }

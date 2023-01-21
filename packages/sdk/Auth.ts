@@ -33,4 +33,8 @@ export default class Auth {
             } catch (error) {}
         }
     }
+
+    public get user() {
+        return this.currentUser;
+    }
 }
