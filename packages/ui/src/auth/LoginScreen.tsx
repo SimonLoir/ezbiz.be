@@ -1,13 +1,18 @@
 import EZBiz from 'ezbiz-sdk';
 import CredentialsError from 'ezbiz-sdk/exceptions/CredentialsError';
 import { createRef, useState } from 'react';
+import Input from './Input';
 type LoginScreenProps = {
     onLogin: () => void;
+    goToRegister: () => void;
 };
-export default function LoginScreen({ onLogin }: LoginScreenProps) {
+export default function LoginScreen({
+    onLogin,
+    goToRegister,
+}: LoginScreenProps) {
     const { auth } = EZBiz;
-    const usernameRef = createRef<HTMLInputElement>();
-    const passwordRef = createRef<HTMLInputElement>();
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [disabled, setDisabled] = useState(false);
 
@@ -15,8 +20,6 @@ export default function LoginScreen({ onLogin }: LoginScreenProps) {
         if (disabled) return;
         e.preventDefault();
         setDisabled(true);
-        const username = usernameRef.current?.value;
-        const password = passwordRef.current?.value;
         if (username && password) {
             try {
                 await auth.login(username, password);
@@ -38,32 +41,23 @@ export default function LoginScreen({ onLogin }: LoginScreenProps) {
     return (
         <form onSubmit={onSubmit} className='space-y-5'>
             <p>{error}</p>
-            <div>
-                <label htmlFor='username' className='block mb-2'>
-                    Votre email
-                </label>
-                <input
-                    type='email'
-                    ref={usernameRef}
-                    autoComplete='username'
-                    id='username'
-                    className='w-full bg-near-white border border-subtle-gray rounded-lg mt-0 p-2.5'
-                    placeholder='name@company.com'
-                />
-            </div>
-            <div>
-                <label htmlFor='password' className='block mb-2'>
-                    Votre mot de passe
-                </label>
-                <input
-                    type='password'
-                    ref={passwordRef}
-                    autoComplete='password'
-                    id='password'
-                    className='w-full bg-near-white border border-subtle-gray rounded-lg mt-0 p-2.5'
-                    placeholder='·············'
-                />
-            </div>
+            <Input
+                id='username'
+                label='Votre email'
+                type='email'
+                placeholder='name@company.com'
+                onChange={(e) => setUsername(e.target.value)}
+                value={username}
+            />
+
+            <Input
+                id='password'
+                label='Votre mot de passe'
+                type='password'
+                placeholder='·············'
+                onChange={(e) => setPassword(e.target.value)}
+                value={password}
+            />
             <button
                 className='w-full bg-primary text-white p-2.5 rounded-lg disabled:opacity-75'
                 disabled={disabled}
@@ -75,7 +69,10 @@ export default function LoginScreen({ onLogin }: LoginScreenProps) {
             </button>
             <p className='text-center'>
                 Pas encore de compte ?{' '}
-                <span className='text-primary font-semibold cursor-pointer'>
+                <span
+                    className='text-primary font-semibold cursor-pointer'
+                    onClick={goToRegister}
+                >
                     Créer un compte
                 </span>
             </p>

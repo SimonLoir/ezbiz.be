@@ -70,7 +70,7 @@ export default function AdminPanel({
                     >
                         {user.name}
                         <div className='h-10 w-10 inline-grid ml-4 bg-near-white align-middle justify-center items-center leading-none rounded-full font-bold'>
-                            SL
+                            {getInitials(user.name)}
                         </div>
                     </span>
                 </header>
@@ -78,4 +78,11 @@ export default function AdminPanel({
             </div>
         </div>
     );
+}
+
+function getInitials(name: string) {
+    return name
+        .split(' ')
+        .map((word) => word[0])
+        .join('');
 }
