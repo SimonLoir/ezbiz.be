@@ -28,9 +28,10 @@ export default function LoginScreen({
                 onLogin();
             } catch (error) {
                 if (error instanceof CredentialsError) {
-                    console.log('Invalid credentials');
+                    setError("Nom d'utilisateur ou mot de passe incorrect");
+                } else {
+                    setError('Une erreur inconnue est survenue');
                 }
-                setError("Nom d'utilisateur ou mot de passe incorrect");
             }
         } else {
             setError('Veuillez remplir tous les champs');

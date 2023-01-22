@@ -28,6 +28,9 @@ module.exports = {
             fontFamily: {
                 montserrat: ['Montserrat', 'sans-serif'],
             },
+            maxWidth: {
+                main: 'calc(100vw - 16rem)',
+            },
         },
     },
     plugins: [],

@@ -1,7 +1,15 @@
 import { useState } from 'react';
 import Input from './Input';
 
-export default function RegisterScreen() {
+type RegisterScreenProps = {
+    onRegister: () => void;
+    goToLogin: () => void;
+};
+
+export default function RegisterScreen({
+    goToLogin,
+    onRegister,
+}: RegisterScreenProps) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [password2, setPassword2] = useState('');
@@ -50,8 +58,11 @@ export default function RegisterScreen() {
                     onChange={(e) => setPassword2(e.target.value)}
                 />
                 <div className='flex justify-between'>
-                    <button className='text-primary font-semibold'>
-                        Précédent
+                    <button
+                        className='text-primary font-semibold'
+                        onClick={goToLogin}
+                    >
+                        J&apos;ai déjà un compte
                     </button>
                     <button className='text-primary font-semibold'>
                         Suivant

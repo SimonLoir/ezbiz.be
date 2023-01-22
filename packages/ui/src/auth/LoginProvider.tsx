@@ -21,7 +21,12 @@ export default function LoginProvider({ onLogin }: LoginProviderProps) {
                     goToRegister={() => setCurrent('register')}
                 />
             )}
-            {current === 'register' && <RegisterScreen />}
+            {current === 'register' && (
+                <RegisterScreen
+                    onRegister={() => {}}
+                    goToLogin={() => setCurrent('login')}
+                />
+            )}
         </Modal>
     );
 }
