@@ -6,11 +6,6 @@ import EZBiz from 'ezbiz-sdk';
 import UserRecord from 'ezbiz-sdk/records/UserRecord';
 import { useRouter } from 'next/router';
 
-EZBiz.config = {
-    host: 'http://192.168.1.21',
-    port: '8090',
-};
-
 const { auth } = EZBiz;
 
 export default function MyApp({ Component, pageProps }: any) {
