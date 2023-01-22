@@ -11,7 +11,7 @@ export default function UserMenu({ user, logout }: UserMenuProps) {
     return (
         <>
             <span
-                className='float-right text-dark-gray cursor-pointer select-none'
+                className='float-right text-dark-gray cursor-pointer select-none hidden sm:inline-block'
                 onClick={() => setOpen((o) => !o)}
             >
                 {user.name}

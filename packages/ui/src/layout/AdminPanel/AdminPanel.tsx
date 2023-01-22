@@ -11,6 +11,8 @@ import { BsFileSpreadsheet } from 'react-icons/bs';
 import { RiFileUserLine } from 'react-icons/ri';
 import UserRecord from 'ezbiz-sdk/records/UserRecord';
 import UserMenu from './UserMenu';
+import { useState } from 'react';
+import { CgMenu } from 'react-icons/cg';
 
 const menuItems = [
     { name: 'Accueil', url: '/', icon: <FaHome /> },
@@ -32,9 +34,14 @@ export default function AdminPanel({
     logout: () => void;
     pageTitle?: string;
 }) {
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
     return (
         <div className='fixed flex flex-row top-0 left-0 right-0 bottom-0 font-montserrat'>
-            <nav className='flex bg-primary flex-col basis-64 grow-0 shrink-0'>
+            <nav
+                className={`${
+                    isMenuOpen ? 'flex' : 'hidden'
+                } bg-primary flex-col basis-64 grow-0 shrink-0 lg:flex`}
+            >
                 <div className='text-white grid justify-center items-center font-semibold text-2xl tracking-wide basis-[65px] grow-0 shrink-0'>
                     EZbiz
                 </div>
@@ -62,9 +69,15 @@ export default function AdminPanel({
                     </div>
                 </div>
             </nav>
-            <div className='flex flex-col bg-near-white flex-1 max-w-main'>
+            <div className='flex flex-col bg-near-white flex-1 max-w-full lg:max-w-main'>
                 <header className='leading-[65px] px-8 shadow-sm z-90  border-b border-subtle-gray bg-white text-near-black'>
-                    <h1 className='inline text-xl font-semibold tracking-wide'>
+                    <span
+                        className='inline align-middle'
+                        onClick={() => setIsMenuOpen((o) => !o)}
+                    >
+                        <CgMenu className='inline text-2xl mr-4' />
+                    </span>
+                    <h1 className='inline text-xl font-semibold tracking-wide align-middle'>
                         {pageTitle}
                     </h1>
                     <UserMenu user={user} logout={logout} />
