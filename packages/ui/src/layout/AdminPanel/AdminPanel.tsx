@@ -25,10 +25,12 @@ export default function AdminPanel({
     children,
     user,
     logout,
+    pageTitle = 'EZbiz',
 }: {
     children: React.ReactNode;
     user: UserRecord;
     logout: () => void;
+    pageTitle?: string;
 }) {
     return (
         <div className='fixed flex flex-row top-0 left-0 right-0 bottom-0 font-montserrat'>
@@ -63,7 +65,7 @@ export default function AdminPanel({
             <div className='flex flex-col bg-near-white flex-1 max-w-main'>
                 <header className='leading-[65px] px-8 shadow-sm z-90  border-b border-subtle-gray bg-white text-near-black'>
                     <h1 className='inline text-xl font-semibold tracking-wide'>
-                        Factures
+                        {pageTitle}
                     </h1>
                     <UserMenu user={user} logout={logout} />
                 </header>

@@ -1,7 +1,7 @@
 import EZBiz from 'ezbiz-sdk';
 import CredentialsError from 'ezbiz-sdk/exceptions/CredentialsError';
 import { createRef, useState } from 'react';
-import Input from './Input';
+import Input from '../components/Input';
 type LoginScreenProps = {
     onLogin: () => void;
     goToRegister: () => void;

@@ -4,11 +4,17 @@ import '../styles/globals.scss';
 import { useEffect, useState } from 'react';
 import EZBiz from 'ezbiz-sdk';
 import UserRecord from 'ezbiz-sdk/records/UserRecord';
+import { useRouter } from 'next/router';
 
 const { auth } = EZBiz;
 
 export default function MyApp({ Component, pageProps }: any) {
     const [currentUser, setCurrentUser] = useState<UserRecord | null>(null);
+    const router = useRouter();
+    let pageTitle = 'EZBiz';
+    if (router.pathname === '/new-invoice') {
+        pageTitle = 'Nouvelle facture';
+    }
 
     useEffect(() => {
         if (!auth.isValid) return;
@@ -30,6 +36,7 @@ export default function MyApp({ Component, pageProps }: any) {
                 auth.logout();
                 setCurrentUser(null);
             }}
+            pageTitle={pageTitle}
         >
             <Component {...pageProps} />
         </AdminPanel>
