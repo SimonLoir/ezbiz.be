@@ -36,11 +36,11 @@ export default function AdminPanel({
 }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     return (
-        <div className='fixed flex flex-row top-0 left-0 right-0 bottom-0 font-montserrat'>
+        <div className='fixed flex flex-row top-0 left-0 right-0 bottom-0 font-montserrat select-none'>
             <nav
                 className={`${
                     isMenuOpen ? 'flex' : 'hidden'
-                } bg-primary flex-col basis-64 grow-0 shrink-0 lg:flex`}
+                } bg-primary flex-col basis-64 grow-0 shrink-0 lg:flex select-none`}
             >
                 <div className='text-white grid justify-center items-center font-semibold text-2xl tracking-wide basis-[65px] grow-0 shrink-0'>
                     EZbiz
@@ -70,7 +70,7 @@ export default function AdminPanel({
                 </div>
             </nav>
             <div className='flex flex-col bg-near-white flex-1 max-w-full lg:max-w-main'>
-                <header className='leading-[65px] px-8 shadow-sm z-90  border-b border-subtle-gray bg-white text-near-black'>
+                <header className='leading-[65px] px-8 shadow-sm z-90  border-b border-subtle-gray bg-white text-near-black select-none'>
                     <span
                         className='inline align-middle cursor-pointer lg:hidden'
                         onClick={() => setIsMenuOpen((o) => !o)}
