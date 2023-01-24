@@ -77,12 +77,20 @@ export default function AdminPanel({
                     >
                         <CgMenu className='inline text-2xl mr-4' />
                     </span>
-                    <h1 className='inline text-xl font-semibold tracking-wide align-middle'>
+                    <h1
+                        className={`${
+                            isMenuOpen ? 'hidden' : 'inline'
+                        } text-xl font-semibold tracking-wide align-middle sm:inline`}
+                    >
                         {pageTitle}
                     </h1>
                     <UserMenu user={user} logout={logout} />
                 </header>
-                <main className='p-8 z-85 overflow-auto grow flex-1'>
+                <main
+                    className={`p-8 z-85 overflow-auto grow flex-1 ${
+                        isMenuOpen ? 'hidden' : 'block'
+                    } sm:block`}
+                >
                     {children}
                 </main>
             </div>
