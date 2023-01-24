@@ -72,7 +72,7 @@ export default function AdminPanel({
             <div className='flex flex-col bg-near-white flex-1 max-w-full lg:max-w-main'>
                 <header className='leading-[65px] px-8 shadow-sm z-90  border-b border-subtle-gray bg-white text-near-black'>
                     <span
-                        className='inline align-middle cursor-pointer'
+                        className='inline align-middle cursor-pointer lg:hidden'
                         onClick={() => setIsMenuOpen((o) => !o)}
                     >
                         <CgMenu className='inline text-2xl mr-4' />

@@ -1,5 +1,6 @@
 import PocketBase, { ClientResponseError, Record } from 'pocketbase';
 import CredentialsError from './exceptions/CredentialsError';
+import DuplicateError from './exceptions/DuplicateError';
 import DatabaseRecord from './records/DatabaseRecord';
 import UserRecord from './records/UserRecord';
 type DatabaseOptions = {
@@ -17,13 +18,33 @@ export default class Database {
         this.pb = new PocketBase(`${options.host}:${options.port}`);
     }
 
+    private async exceptionHandler<T>(fn: () => T): Promise<T> {
+        try {
+            return await fn();
+        } catch (error) {
+            console.warn('error', error);
+            if (error instanceof ClientResponseError) {
+                if (error.status === 401 || error.status === 400) {
+                    throw new CredentialsError('Invalid credentials');
+                }
+
+                if (error.status === 0) {
+                    throw new DuplicateError();
+                }
+            }
+            throw error;
+        }
+    }
+
     public async getAll<RecordType extends DatabaseRecord = any>(
         RType: Type<RecordType>,
         collection: string
     ): Promise<RecordType[]> {
-        const result = await this.pb.collection(collection).getFullList();
-        console.log(result);
-        return result.map((record) => new RType(record, this));
+        return await this.exceptionHandler(async () => {
+            const result = await this.pb.collection(collection).getFullList();
+            console.log(result);
+            return result.map((record) => new RType(record, this));
+        });
     }
 
     public async get<RecordType extends DatabaseRecord = any>(
@@ -31,11 +52,13 @@ export default class Database {
         collection: string,
         filter: string
     ): Promise<RecordType | null> {
-        if (!filter) return null;
-        const record = await this.pb
-            .collection(collection)
-            .getFirstListItem(filter);
-        return new RType(record, this);
+        return await this.exceptionHandler(async () => {
+            if (!filter) return null;
+            const record = await this.pb
+                .collection(collection)
+                .getFirstListItem(filter);
+            return new RType(record, this);
+        });
     }
 
     public async getOne<RecordType extends DatabaseRecord = any>(
@@ -43,9 +66,11 @@ export default class Database {
         collection: string,
         id: string
     ): Promise<RecordType | null> {
-        if (!id) return null;
-        const record = await this.pb.collection(collection).getOne(id);
-        return new RType(record, this);
+        return await this.exceptionHandler(async () => {
+            if (!id) return null;
+            const record = await this.pb.collection(collection).getOne(id);
+            return new RType(record, this);
+        });
     }
 
     public async loginWithPassword<RecordType extends DatabaseRecord = any>(
@@ -54,19 +79,12 @@ export default class Database {
         username: string,
         password: string
     ) {
-        try {
+        return await this.exceptionHandler(async () => {
             const auth = await this.pb
                 .collection(collection)
                 .authWithPassword(username, password);
             return new RType(auth.record, this);
-        } catch (error) {
-            if (error instanceof ClientResponseError) {
-                if (error.status === 401 || error.status === 400) {
-                    throw new CredentialsError('Invalid credentials');
-                }
-            }
-            throw error;
-        }
+        });
     }
 
     logout() {

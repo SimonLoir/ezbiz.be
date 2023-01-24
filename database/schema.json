@@ -332,7 +332,7 @@
                 "name": "address",
                 "type": "text",
                 "system": false,
-                "required": true,
+                "required": false,
                 "unique": false,
                 "options": {
                     "min": null,
@@ -345,6 +345,59 @@
                 "name": "vat_number",
                 "type": "text",
                 "system": false,
+                "required": false,
+                "unique": false,
+                "options": {
+                    "min": null,
+                    "max": null,
+                    "pattern": ""
+                }
+            },
+            {
+                "id": "phattros",
+                "name": "phone_number",
+                "type": "text",
+                "system": false,
+                "required": false,
+                "unique": false,
+                "options": {
+                    "min": null,
+                    "max": null,
+                    "pattern": "^[\\+]?[(]?[0-9]{3}[)]?[-\\s\\.]?[0-9]{3}[-\\s\\.]?[0-9]{4,6}$"
+                }
+            }
+        ],
+        "listRule": "@request.auth.enterprise = enterprise",
+        "viewRule": "@request.auth.enterprise = enterprise",
+        "createRule": null,
+        "updateRule": null,
+        "deleteRule": null,
+        "options": {}
+    },
+    {
+        "id": "6xicq6qwyyt7a6s",
+        "name": "invoices",
+        "type": "base",
+        "system": false,
+        "schema": [
+            {
+                "id": "kwmnyuhw",
+                "name": "enterprise",
+                "type": "relation",
+                "system": false,
+                "required": true,
+                "unique": false,
+                "options": {
+                    "maxSelect": 1,
+                    "collectionId": "iogogirboenk1ud",
+                    "cascadeDelete": true
+                }
+            },
+            {
+                "id": "pnk082bv",
+                "name": "invoice_id",
+                "type": "text",
+                "system": false,
                 "required": true,
                 "unique": false,
                 "options": {
@@ -352,10 +405,59 @@
                     "max": null,
                     "pattern": ""
                 }
+            },
+            {
+                "id": "9n7z3vdz",
+                "name": "type",
+                "type": "select",
+                "system": false,
+                "required": true,
+                "unique": false,
+                "options": {
+                    "maxSelect": 1,
+                    "values": ["in", "out"]
+                }
+            },
+            {
+                "id": "ckxxjwd7",
+                "name": "base_amount",
+                "type": "number",
+                "system": false,
+                "required": false,
+                "unique": false,
+                "options": {
+                    "min": 0,
+                    "max": null
+                }
+            },
+            {
+                "id": "iwzrgxnj",
+                "name": "taxes_amount",
+                "type": "number",
+                "system": false,
+                "required": false,
+                "unique": false,
+                "options": {
+                    "min": 0,
+                    "max": null
+                }
+            },
+            {
+                "id": "ygypbazc",
+                "name": "customer",
+                "type": "relation",
+                "system": false,
+                "required": false,
+                "unique": false,
+                "options": {
+                    "maxSelect": 1,
+                    "collectionId": "6a27hpglycvfx9h",
+                    "cascadeDelete": false
+                }
             }
         ],
-        "listRule": "@request.auth.enterprise = enterprise",
-        "viewRule": "@request.auth.enterprise = enterprise",
+        "listRule": null,
+        "viewRule": null,
         "createRule": null,
         "updateRule": null,
         "deleteRule": null,
