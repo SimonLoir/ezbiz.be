@@ -18,14 +18,12 @@ module.exports = {
             'subtle-gray': 'rgb(228, 228, 228)',
             'light-gray': 'rgb(173, 181, 189)',
             'near-white': 'rgb(241, 243, 245)',
+            'dark-dark': 'rgb(30, 30, 30)',
+            'dark-gray': 'rgb(37, 37, 38)',
+            'dark-lighter-gray': 'rgb(51, 51, 51)',
+            'dark-text': 'rgb(231, 231, 231)',
         },
         extend: {
-            gridTemplateColumns: {
-                panel: '250px 1fr',
-            },
-            gridTemplateRows: {
-                panel: '65px 1fr',
-            },
             fontFamily: {
                 montserrat: ['Montserrat', 'sans-serif'],
             },
