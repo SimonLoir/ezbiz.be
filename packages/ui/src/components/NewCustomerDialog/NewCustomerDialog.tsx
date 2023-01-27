@@ -86,7 +86,7 @@ export default function NewCustomerDialog({ onHide }: NewCustomerDialogProps) {
                             Annuler
                         </button>
                         <button
-                            className='bg-primary text-white p-4 py-2 rounded-lg disabled:bg-near-white disabled:text-near-black'
+                            className='bg-primary text-white p-4 py-2 rounded-lg disabled:bg-near-white disabled:text-near-black dark:bg-dark-dark'
                             disabled={false}
                         >
                             Confirmer

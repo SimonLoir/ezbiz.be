@@ -26,7 +26,7 @@ export default function Input({
                     type={type}
                     autoComplete={id}
                     id={id}
-                    className='w-full bg-near-white border border-subtle-gray rounded-lg mt-0 p-2.5'
+                    className='w-full bg-near-white border dark:bg-dark-lighter-gray border-subtle-gray dark:border-dark-dark rounded-lg mt-0 p-2.5'
                     placeholder={placeholder}
                     onChange={onChange}
                     value={value}
@@ -40,7 +40,7 @@ export default function Input({
             </label>
             <textarea
                 id={id}
-                className='w-full bg-near-white border border-subtle-gray rounded-lg mt-0 p-2.5'
+                className='w-full bg-near-white border dark:bg-dark-lighter-gray border-subtle-gray dark:border-dark-dark rounded-lg mt-0 p-2.5'
                 placeholder={placeholder}
                 onChange={onChange}
                 value={value}

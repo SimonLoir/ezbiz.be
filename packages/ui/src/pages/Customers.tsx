@@ -15,7 +15,7 @@ export default function CustomersPageComponent() {
             <>
                 <table className='table-auto w-full text-left whitespace-nowrap border-spacing-y-2 border-separate'>
                     <thead>
-                        <tr className='text-dark-gray'>
+                        <tr className='text-dark-gray dark:text-dark-text'>
                             {headers.map((t) => (
                                 <th key={t} className='p-4'>
                                     {t}
@@ -25,7 +25,10 @@ export default function CustomersPageComponent() {
                     </thead>
                     <tbody>
                         {customers.map((customer, i) => (
-                            <tr key={i} className='bg-white'>
+                            <tr
+                                key={i}
+                                className='bg-white dark:bg-dark-lighter-gray dark:text-white'
+                            >
                                 <td className='p-4 rounded-l-lg'>
                                     {customer.name}
                                 </td>
@@ -40,7 +43,7 @@ export default function CustomersPageComponent() {
                         <tr>
                             <td
                                 colSpan={headers.length}
-                                className='text-center text-accent p-4 font-medium'
+                                className='text-center text-accent dark:text-secondary p-4 font-medium'
                             >
                                 <button onClick={() => setShowDialog(true)}>
                                     Ajouter un client
