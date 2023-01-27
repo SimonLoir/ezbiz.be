@@ -73,6 +73,14 @@ export default class Database {
         });
     }
 
+    /**
+     * Logs the user in with their email and password and the collection type
+     * @param RType The type of record to return
+     * @param collection The collection to log in with
+     * @param username The username to log in with
+     * @param password The password to log in with
+     * @returns A DatabaseRecord if the user is logged in, null otherwise
+     */
     public async loginWithPassword<RecordType extends DatabaseRecord = any>(
         RType: Type<RecordType>,
         collection: string,
@@ -87,14 +95,24 @@ export default class Database {
         });
     }
 
+    /**
+     * Logs out the current user
+     */
     logout() {
         this.pb.authStore.clear();
     }
 
+    /**
+     * Gets whether the current user is valid
+     */
     get isValidUser() {
         return this.pb.authStore.isValid;
     }
 
+    /**
+     * Gets the current user
+     * @returns A UserRecord if the user is logged in, null otherwise
+     */
     get currentUser() {
         const model = this.pb.authStore.model;
         if (
@@ -105,5 +123,23 @@ export default class Database {
             return new UserRecord(model, this);
         }
         return null;
+    }
+
+    /**
+     * Creates a new record in the database and returns it
+     * @param RType The type of record to create
+     * @param data The contents of the record
+     * @param collection The collection to create the record in
+     * @returns The record that was created
+     */
+    public async createRecord<RecordType extends DatabaseRecord = any>(
+        RType: Type<RecordType>,
+        data: any,
+        collection: string
+    ): Promise<RecordType | null> {
+        return await this.exceptionHandler(async () => {
+            const record = await this.pb.collection(collection).create(data);
+            return new RType(record, this);
+        });
     }
 }

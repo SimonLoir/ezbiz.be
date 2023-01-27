@@ -7,7 +7,7 @@ export default class CustomerRecord extends DatabaseRecord {
     get email(): string {
         return this.get('email');
     }
-    get phone(): string {
+    get phone_number(): string {
         return this.get('phone_number');
     }
 

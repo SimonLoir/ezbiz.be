@@ -107,8 +107,8 @@
                 }
             }
         ],
-        "listRule": null,
-        "viewRule": null,
+        "listRule": "@request.auth.enterprise.id = id ",
+        "viewRule": "@request.auth.enterprise.id = id ",
         "createRule": null,
         "updateRule": null,
         "deleteRule": null,
@@ -369,7 +369,7 @@
         ],
         "listRule": "@request.auth.enterprise = enterprise",
         "viewRule": "@request.auth.enterprise = enterprise",
-        "createRule": null,
+        "createRule": "@request.data.enterprise = @request.auth.enterprise.id",
         "updateRule": null,
         "deleteRule": null,
         "options": {}

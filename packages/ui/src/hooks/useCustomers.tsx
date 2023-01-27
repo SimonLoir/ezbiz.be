@@ -4,7 +4,11 @@ import CustomerRecord from 'ezbiz-sdk/records/CustomerRecord';
 import { useEffect, useState } from 'react';
 
 const { customers: customers_service } = EZBiz;
-export default function useCustomers() {
+export default function useCustomers({
+    lastUpdated,
+}: {
+    lastUpdated?: number;
+}) {
     const [customers, setCustomers] = useState<CustomerRecord[] | null>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<Error | null>(null);
@@ -26,6 +30,6 @@ export default function useCustomers() {
                     setLoading(false);
                 }
             });
-    }, []);
+    }, [lastUpdated]);
     return { customers, loading, error };
 }

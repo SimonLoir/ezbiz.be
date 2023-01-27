@@ -4,7 +4,7 @@ import Database, { Type } from '../Database';
 export default abstract class DatabaseRecord {
     constructor(private record: Record, protected database: Database) {}
 
-    public get(key: string) {
+    protected get(key: string) {
         return this.record[key];
     }
 
@@ -16,5 +16,9 @@ export default abstract class DatabaseRecord {
         );
         if (updatedRecord)
             this.record.load(updatedRecord?.record ?? this.record);
+    }
+
+    public get id() {
+        return this.get('id');
     }
 }

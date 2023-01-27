@@ -7,7 +7,8 @@ const headers = ['Nom', 'Email', 'Téléphone', 'Adresse', 'N° TVA'];
 
 export default function CustomersPageComponent() {
     const [showDialog, setShowDialog] = useState(false);
-    const { customers, loading, error } = useCustomers();
+    const [lastUpdated, setLastUpdated] = useState(() => Date.now());
+    const { customers, loading, error } = useCustomers({ lastUpdated });
     if (loading) return <div>Loading...</div>;
     if (customers)
         return (
@@ -29,7 +30,7 @@ export default function CustomersPageComponent() {
                                     {customer.name}
                                 </td>
                                 <td className='p-4'>{customer.email}</td>
-                                <td className='p-4'>{customer.phone}</td>
+                                <td className='p-4'>{customer.phone_number}</td>
                                 <td className='p-4'>{customer.address}</td>
                                 <td className='p-4 rounded-r-lg'>
                                     {customer.vat_number}
@@ -57,7 +58,12 @@ export default function CustomersPageComponent() {
                 </button>
 
                 {showDialog && (
-                    <NewCustomerDialog onHide={() => setShowDialog(false)} />
+                    <NewCustomerDialog
+                        onHide={() => {
+                            setShowDialog(false);
+                            setLastUpdated(Date.now());
+                        }}
+                    />
                 )}
             </>
         );
