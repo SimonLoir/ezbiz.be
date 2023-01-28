@@ -1,0 +1,3 @@
+[submodule "invoices-builder"]
+	path = invoices-builder
+	url = https://github.com/Gabriel-Benoit/EzInvoiceRS

@@ -7,6 +7,10 @@ services:
       - 8090:8090
     volumes:
       - database:/pb/pb_data
-
+  invoices-builder:
+    build: ./invoices-builder
+    command: rustup run nightly cargo run --release
+    ports:
+      - 8080:8080
 volumes:
   database:
