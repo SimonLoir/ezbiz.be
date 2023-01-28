@@ -18,9 +18,10 @@ export default function NewLine({ onHide, data }: NewLineProps) {
                 <div>
                     <SubTitle text='Description' />
                     <textarea
-                        className='w-full rounded-lg border border-subtle-gray p-2'
+                        className='w-full rounded-lg border border-subtle-gray p-2 dark:bg-dark-gray dark:text-white'
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
+                        placeholder="Description de l'article"
                     ></textarea>
                 </div>
                 <div>
@@ -28,7 +29,7 @@ export default function NewLine({ onHide, data }: NewLineProps) {
                     <div className='space-x-4 mb-4'>
                         <input
                             type='number'
-                            className='rounded-lg border border-subtle-gray p-1 w-[70px]'
+                            className='rounded-lg border border-subtle-gray p-1 w-[70px] dark:bg-dark-gray'
                             value={1}
                             min={1}
                         />
@@ -36,7 +37,7 @@ export default function NewLine({ onHide, data }: NewLineProps) {
                         <span>
                             <input
                                 type='number'
-                                className='rounded-lg border border-subtle-gray p-1 w-[70px] mr-2'
+                                className='rounded-lg border border-subtle-gray p-1 w-[70px] mr-2 dark:bg-dark-gray'
                                 value={0}
                                 min={0}
                             />
@@ -51,7 +52,9 @@ export default function NewLine({ onHide, data }: NewLineProps) {
                                 'transition-all',
                             ];
                             if (value === rate) {
-                                classes.push('text-primary');
+                                classes.push(
+                                    'text-primary dark:text-secondary'
+                                );
                                 classes.push('font-semibold');
                                 classes.push('border-b-2');
                             }
@@ -70,7 +73,7 @@ export default function NewLine({ onHide, data }: NewLineProps) {
                 <div className='flex justify-end space-x-4'>
                     <button onClick={() => onHide()}>Annuler</button>
                     <button
-                        className='bg-primary text-white p-4 py-2 rounded-lg disabled:bg-near-white disabled:text-near-black'
+                        className='bg-primary text-white p-4 py-2 rounded-lg disabled:bg-near-white disabled:text-near-black dark:disabled:bg-dark-lighter-gray dark:bg-dark-dark'
                         disabled={description.trim() == ''}
                     >
                         Confirmer

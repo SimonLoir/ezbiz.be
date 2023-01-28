@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import Dialog from '../Dialog';
 import Panel from '../Panel';
 import { SubTitle } from '../Title';
 import NewLine from './NewLine';
@@ -11,14 +10,14 @@ export default function InvoiceContentPanel() {
             <SubTitle text='Contenu de la facture' />
             <table className='table-auto w-full text-left'>
                 <thead>
-                    <tr className='bg-near-white text-dark-gray whitespace-nowrap'>
+                    <tr className='bg-near-white text-dark-gray whitespace-nowrap dark:bg-dark-gray dark:text-white'>
                         <th className='p-2 rounded-l-lg'>Description</th>
                         <th className='p-2'>Prix unitaire HT</th>
                         <th className='p-2'>Taux TVA</th>
                         <th className='p-2 rounded-r-lg cursor-pointer'>⁞</th>
                     </tr>
                 </thead>
-                <tbody className='divide-y divide-subtle-gray text-dark-gray'>
+                <tbody className='divide-y divide-subtle-gray text-dark-gray dark:text-dark-text dark:divide-dark-gray'>
                     <tr>
                         <td className='p-2 text-justify'>
                             Lorem ipsum, dolor sit amet consectetur adipisicing
@@ -34,7 +33,7 @@ export default function InvoiceContentPanel() {
                     <tr>
                         <td
                             colSpan={4}
-                            className='text-center text-accent p-2 font-medium'
+                            className='text-center text-accent dark:text-secondary p-2 font-medium'
                         >
                             <button onClick={() => setShowDialog(true)}>
                                 Ajouter une ligne

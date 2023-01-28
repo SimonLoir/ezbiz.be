@@ -7,7 +7,7 @@ import Title, { SubTitle } from '../components/Title';
 
 export default function NewInvoicePageComponent() {
     return (
-        <div className='grid grid-cols-2 gap-8 h-full '>
+        <div className='lg:grid grid-cols-2 gap-8 h-full space-y-5 lg:space-y-0'>
             <div className='space-y-5'>
                 <Title text='Contenu de la facture' />
                 <Panel>
@@ -18,7 +18,12 @@ export default function NewInvoicePageComponent() {
                             <label htmlFor='submit-date'>
                                 Date d&apos;émission
                             </label>{' '}
-                            : <input type='date' id='submit-date' />
+                            :{' '}
+                            <input
+                                type='date'
+                                id='submit-date'
+                                className='dark:bg-transparent dark:text-white'
+                            />
                         </div>
                         <div>
                             <label htmlFor='days'>Délais de payement :</label>{' '}
@@ -27,7 +32,7 @@ export default function NewInvoicePageComponent() {
                                 id='days'
                                 min={1}
                                 value={14}
-                                className='w-9'
+                                className='w-9 dark:bg-transparent dark:text-white'
                             />{' '}
                             jours
                         </div>

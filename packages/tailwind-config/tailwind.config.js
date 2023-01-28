@@ -22,6 +22,7 @@ module.exports = {
             'dark-gray': 'rgb(37, 37, 38)',
             'dark-lighter-gray': 'rgb(51, 51, 51)',
             'dark-text': 'rgb(231, 231, 231)',
+            transparent: 'transparent',
         },
         extend: {
             fontFamily: {
