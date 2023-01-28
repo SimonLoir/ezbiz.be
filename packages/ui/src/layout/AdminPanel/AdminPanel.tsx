@@ -39,7 +39,10 @@ export default function AdminPanel({
     pageTitle?: string;
 }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [darkMode, setDarkMode] = useState(true);
+    const [darkMode, setDarkMode] = useState(() => {
+        const darkMode = localStorage.getItem('darkMode');
+        return darkMode === 'true';
+    });
     return (
         <div
             className={`fixed flex flex-row top-0 left-0 right-0 bottom-0 font-montserrat select-none ${
@@ -96,7 +99,15 @@ export default function AdminPanel({
                     <UserMenu user={user} logout={logout} />
                     <div
                         className='inline-block mr-4 float-right leading-[65px] h-[65px] cursor-pointer'
-                        onClick={() => setDarkMode((d) => !d)}
+                        onClick={() => {
+                            setDarkMode((d) => {
+                                localStorage.setItem(
+                                    'darkMode',
+                                    (!d).toString()
+                                );
+                                return !d;
+                            });
+                        }}
                     >
                         {darkMode ? (
                             <BsFillSunFill className='inline text-white' />
