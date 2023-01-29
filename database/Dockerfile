@@ -1,15 +1,26 @@
-FROM alpine:latest
+## Build
+FROM golang:1.19-buster AS build
 
-ARG PB_VERSION=0.11.4
+WORKDIR /
 
-RUN apk add --no-cache \
-    unzip
+COPY go.mod ./
+COPY go.sum ./
+RUN go mod download
 
-# download and unzip PocketBase
-ADD https://github.com/pocketbase/pocketbase/releases/download/v${PB_VERSION}/pocketbase_${PB_VERSION}_linux_amd64.zip /tmp/pb.zip
-RUN unzip /tmp/pb.zip -d /pb/
+COPY *.go ./
+
+RUN go build -o /database
+
+RUN /database
+
+
+## Deploy
+FROM debian:buster
+
+WORKDIR /pb
+
+COPY --from=build /database /pb/database
 
 EXPOSE 8090
 
-# start PocketBase
-CMD ["/pb/pocketbase", "serve", "--http=0.0.0.0:8090"]
+CMD ["./database", "serve", "--http=0.0.0.0:8090"]
