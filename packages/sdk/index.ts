@@ -13,4 +13,7 @@ export default class EZBiz {
         this.auth = new Auth(this.database);
         this.customers = new Customers(this.database, this.auth);
     }
+    public static test() {
+        EZBiz.database.test();
+    }
 }

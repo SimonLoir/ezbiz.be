@@ -1,6 +1,8 @@
+import EZBiz from 'ezbiz-sdk';
 import Panel from '../components/Panel';
 import { SubTitle } from '../components/Title';
 import useEnterprise from '../hooks/useEnterprise';
+const { test } = EZBiz;
 export default function HomePage() {
     const { enterprise, error, loading } = useEnterprise();
     if (loading) return <div>Loading...</div>;
@@ -22,6 +24,7 @@ export default function HomePage() {
                 </Panel>
                 <Panel>
                     <SubTitle text='Bienvenue sur EZBiz' />
+                    <button onClick={test}>Test</button>
                 </Panel>
             </div>
         );

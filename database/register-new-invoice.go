@@ -9,15 +9,16 @@ import (
 	"github.com/pocketbase/pocketbase/core"
 )
 
-func registerHello(e *core.ServeEvent, app *pocketbase.PocketBase) {
+func registerNewInvoice(e *core.ServeEvent, app *pocketbase.PocketBase) {
 	e.Router.AddRoute(echo.Route{
 		Method: http.MethodGet,
-		Path:   "/ezbiz/test",
+		Path:   "/ezbiz/new-invoice",
 		Handler: func(c echo.Context) error {
 			return c.JSON(http.StatusOK, "Hello World")
 		},
 		Middlewares: []echo.MiddlewareFunc{
 			apis.ActivityLogger(app),
+			apis.RequireRecordAuth("users"),
 		},
 	})
 }

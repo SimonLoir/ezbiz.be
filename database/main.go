@@ -11,8 +11,7 @@ func main() {
 	app := pocketbase.New()
 
 	app.OnBeforeServe().Add(func(e *core.ServeEvent) error {
-		registerHello(e, app)
-
+		registerNewInvoice(e, app)
 		return nil
 	})
 

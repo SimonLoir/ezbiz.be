@@ -142,4 +142,8 @@ export default class Database {
             return new RType(record, this);
         });
     }
+
+    public test() {
+        this.pb.send('/ezbiz/new-invoice', {});
+    }
 }
