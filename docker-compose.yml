@@ -5,12 +5,36 @@ services:
     build: ./database
     ports:
       - 8090:8090
+    networks:
+      - ezbiz
+      - web
     volumes:
       - database:/pb/pb_data
+    labels:
+      - traefik.docker.network=web
+      - traefik.http.routers.ezbiz-db.rule=Host(`database.ezbiz.be`)
+      - traefik.http.routers.ezbiz-db.tls=true
+      - traefik.http.routers.ezbiz-db.tls.certresolver=letsencrypt
+      - traefik.http.services.ezbiz-db.loadbalancer.server.port=8090
+      - traefik.http.routers.ezbiz-db.service=ezbiz-db
   invoices-builder:
     build: ./invoices-builder
     command: rustup run nightly cargo run --release
     ports:
-      - 8080:8080
+      - 8081:8080
+    networks:
+      - web
+      - ezbiz
+    labels:
+      - traefik.docker.network=web
+      - traefik.http.routers.ezbiz-in.rule=Host(`invoices.ezbiz.be`)
+      - traefik.http.routers.ezbiz-in.tls=true
+      - traefik.http.routers.ezbiz-in.tls.certresolver=letsencrypt
+      - traefik.http.services.ezbiz-in.loadbalancer.server.port=8080
+      - traefik.http.routers.ezbiz-in.service=ezbiz-in
 volumes:
   database:
+networks:
+  ezbiz:
+  web:
+    external: true
